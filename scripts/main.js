@@ -312,7 +312,12 @@ class sqlExercise extends HTMLElement {
         result_div.innerText = e.message;
       };
 
-      query(editor.getValue(), handleSubmit, handleError);
+      let sqlQuery = editor.getSelection();
+      if (!sqlQuery) {
+        sqlQuery = editor.getValue();
+      }
+
+      query(sqlQuery, handleSubmit, handleError);
       outputBox.innerHTML = "";
       outputBox.appendChild(result_div);
     };
